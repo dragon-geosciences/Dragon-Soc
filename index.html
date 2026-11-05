@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<!-- Flatpickr CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+>
+
+<!-- Flatpickr JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Observation Card</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f5f7;
+    color: #1f2933;
+}
+
+.page {
+    width: min(100%, 1000px);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    overflow: hidden;
+    border-radius: 0;
+}
+
+/* =========================
+   Header
+========================= */
+
+.header {
+    background: #0F2A60;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    min-height: 90px;
+}
+
+.logo-space {
+    width: 280px;
+    height: 60px;
+}
+
+.logo-space img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =========================
+   Main Title
+========================= */
+
+.soc-title {
+
+    text-align: center;
+
+    font-size: 36px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #0F2A60;
+
+    margin: 25px 0 20px;
+}
+
+/* =========================
+   Form
+========================= */
+
+.form {
+    padding: 25px 35px 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 22px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.label-bar {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    padding: 8px 12px;
+
+    background: #0F2A60;
+
+    color: white;
+
+    font-weight: 600;
+
+    border-radius: 3px;
+}
+
+.required::after {
+    content: " *";
+    color: #d32f2f;
+}
+
+.hint {
+    margin-top: 8px;
+    color: rgba(43, 43, 43, 0.65);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+/* =========================
+   Inputs
+========================= */
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    border: 1px solid #cfd6dc;
+
+    border-radius: 4px;
+
+    padding: 10px 12px;
+
+    font-size: 15px;
+
+    background: #fff;
+}
+
+#eventTime[type="text"] {
+    cursor: pointer;
+    color: #666;
+}
+
+#eventTime[type="text"]::placeholder {
+    color: #666;
+    opacity: 1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    outline: none;
+
+    border-color: #0F2A60;
+
+    box-shadow: 0 0 0 3px rgba(75,96,117,.15);
+}
+
+textarea {
+
+    min-height: 180px;
+
+    resize: vertical;
+}
+
+/* =========================
+   Section Titles
+========================= */
+
+.section-title {
+
+    width: 100%;
+
+    background: #0F2A60;
+
+    color: white;
+
+    padding: 10px 16px;
+
+    margin-bottom: 12px;
+
+    font-size: 20px;
+
+    font-weight: 400;
+
+    letter-spacing: .5px;
+}
+
+/* =========================
+   Type Options
+========================= */
+
+.type-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+
+.type-option {
+    position: relative;
+}
+
+.type-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.type-option label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    margin: 0;
+    padding: 7px 12px 7px 34px;
+    background: #D96B3B;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 4px;
+}
+
+
+/* 未選取時的方框 */
+.type-option label::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* 選取時顯示白色方框 */
+.type-option input:checked + label::before {
+    background: #fff;
+    
+}
+
+/* 選取時顯示 ✓ */
+.type-option label::after {
+    content: "✓";
+    display: none;
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-55%);
+    color: #000000;/*#D96B3B;*/
+    font-size: 12px;
+    font-weight: 900;
+}
+
+
+.type-option input:checked + label::after {
+    display: block;
+}
+
+/* Positive Feedback：藍底白字 */
+.type-option.positive label {
+    background: #0F2A60;
+    color: #fff;
+}
+
+/* Positive Feedback 的勾選符號 */
+.type-option.positive label::after {
+    color: #000000;
+}
+
+/* 鍵盤操作時也保留可見提示 */
+.type-option input:focus-visible + label {
+    outline: 2px solid #0F2A60;
+    outline-offset: 2px;
+}
+
+.field-error {
+    display: none;
+    margin-top: 6px;
+    color: #f53737;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* =========================
+   Date
+
+========================= */
+
+.date-confirm-row {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.date-confirm-row input {
+
+    flex: 1;
+}
+
+.confirm-date-btn {
+
+    background: #0F2A60;
+
+    color: white;
+
+    border: none;
+
+    padding: 0 25px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    border-radius: 4px;
+}
+
+.confirm-date-btn:hover {
+
+    background: #0B214D;
+}
+
+.confirm-date-btn.confirmed {
+
+    background: #2e7d32;
+}
+
+/* =========================
+   File Upload
+========================= */
+
+ .attachment-box {
+    border: 1px dashed #adb5bd;
+    padding: 14px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    background: #fff;
+}
+
+/* 完全隱藏原生 File input */
+.attachment-box input[type="file"] {
+    display: none;
+}
+
+/* 新增附件按鈕 */
+.file-picker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-width: 150px;
+    min-height: 42px;
+    padding: 0 18px;
+    margin: 0;
+    background: #0F2A60;
+    color: white;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .15s ease;
+}
+
+.file-picker:hover {
+    background: #FF5F01;
+}
+
+.file-name {
+    color: #666;
+    font-size: 13px;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* 附件清單：每個檔案各自一張列 */
+.attachment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #dce2e8;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.attachment-file-icon {
+    display: flex;
+    flex: 0 0 42px;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 46px;
+    border-radius: 6px;
+    background: #e8eef8;
+    color: #0F2A60;
+}
+
+.attachment-file-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.attachment-item-info {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap:15px;
+    min-width: 0;
+    
+}
+
+.attachment-item-name {
+    color: #202a35;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.attachment-item-size {
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 12px;
+}
+
+.attachment-remove {
+    flex: 0 0 auto;
+    border: 1px solid #f0caca;
+    border-radius: 6px;
+    padding: 7px 10px;
+    background: #fff;
+    color: #b42318;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.attachment-remove:hover {
+    background: #fff1f0;
+    border-color: #d92d20;
+}
+
+@media (max-width: 480px) {
+    .attachment-item {
+        gap: 9px;
+        padding: 10px;
+    }
+    .attachment-file-icon {
+        flex-basis: 36px;
+        width: 36px;
+        height: 40px;
+    }
+    .attachment-remove {
+        padding: 7px 8px;
+    }
+}
+
+/* =========================
+   Submit
+========================= */
+
+.actions {
+
+    margin-top: 30px;
+
+    text-align: right;
+}
+
+.submit-btn {
+
+    background: #0F2A60;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 32px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    border-radius: 4px;
+}
+
+.submit-btn:hover {
+
+    background: #0B214D;
+}
+
+.status {
+
+    margin-top: 15px;
+
+    font-size: 14px;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width:768px){
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .type-options {
+        gap: 6px;
+    }
+
+    .type-option label {
+        font-size: 13px;
+        min-height: 34px;
+        padding: 6px 10px 6px 34px;
+    }
+    .logo-space {
+
+        width: 220px;
+
+        height: 50px;
+    }
+
+    .soc-title{
+
+        font-size: 22px;
+
+        line-height: 1.2;
+
+        letter-spacing:  normal;
+
+        margin: 15px 0;
+    }
+    .type-option label::before {
+
+        width:16px;
+        height:16px;
+    }
+
+    .type-option label::after {
+
+        font-size:13px;
+    }
+}
+/* =========================
+   Modal
+========================= */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: min(700px,90vw);
+    max-height: 90vh;
+    overflow-y: auto;
+
+    color: #222;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #198754;
+}
+
+.preview-row {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+}
+
+.preview-label {
+    font-weight: 700;
+}
+
+.close-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+.preview-textbox {
+    max-height: 100px;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+.receipt-row {
+    margin-bottom: 18px;
+}
+
+.receipt-row b {
+    display: block;
+    margin-bottom: 6px;
+}
+.receipt-label {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.receipt-value {
+    padding-left: 6px;
+    color: #444;
+}
+.inline-show-btn {
+
+    padding: 0;
+    margin-top: 2px;
+    margin-bottom: 12px;
+    border: none;
+    background: none;
+    color: #0d6efd;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#descText,
+#actionText {
+
+    margin-top: 4px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.5;
+    color: #444;
+}
+
+
+/* =========================
+   Loading Overlay
+========================= */
+
+.loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 18, 38, 0.72);
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-content {
+    width: min(360px, 90vw);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.loading-spinner {
+    width: 58px;
+    height: 58px;
+    border: 6px solid #dce5f2;
+    border-top-color: #0F2A60;
+    border-radius: 50%;
+    animation: socLoadingSpin 0.8s linear infinite;
+}
+
+@keyframes socLoadingSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-title {
+    color: #0F2A60;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.loading-description {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+</style>
+</head>
+
+<body>
+<div class="page">
+  <main class="card">
+    <header class="header">
+
+    <div class="logo-space">
+        <img
+            src="images/DG_Logo_中文_RGB_龍銓_wht.png"
+            alt="Dragon Geosciences Logo">
+    </div>
+    </header>
+    <div class="soc-title">    SAFETY OBSERVATION CARD  </div>
+
+    <form class="form" id="socForm">
+      <div class="grid">
+
+        <div class="field full" id="typeSection">
+          <label class="label-bar required" class="required">Type</label>
+          <div class="type-options">
+            <div class="type-option">
+              <input id="nearMiss" type="radio" name="Type" value="Near Miss">
+              <label for="nearMiss">Near Miss</label>
+            </div>
+            <div class="type-option">
+              <input id="unsafeAct" type="radio" name="Type" value="Unsafe Act">
+              <label for="unsafeAct">Unsafe Act</label>
+            </div>
+            <div class="type-option">
+              <input id="unsafeCondition" type="radio" name="Type" value="Unsafe Condition">
+              <label for="unsafeCondition">Unsafe Condition</label>
+            </div>
+
+            <div class="type-option">
+              <input id="hygiene" type="radio" name="Type" value="Hygiene">
+              <label for="hygiene">Hygiene</label>
+            </div>
+            <div class="type-option">
+              <input id="quality" type="radio" name="Type" value="Quality">
+              <label for="quality">Quality</label>
+            </div>
+            <div class="type-option">
+              <input id="other" type="radio" name="Type" value="Other">
+              <label for="other">Other</label>
+            </div>
+            <div class="type-option positive">
+              <input id="positiveFeedback" type="radio" name="Type" value="Positive Feedback">
+              <label for="positiveFeedback">Positive Feedback</label>
+            </div>
+            <div class="type-option positive">
+              <input id="Immediate Action" type="radio" name="Type" value="Immediate Action">
+              <label for="Immediate Action">Immediate Action</label>
+            </div>
+          </div>
+          <div class="hint">Select one observation type.</div>
+          <div id="typeError" class="field-error"></div>
+        </div>
+        
+        <div class="field">
+          <label class="label-bar required" for="reportedBy">Reported By</label>
+          <input id="reportedBy" name="ReportedBy" type="text" required>
+          <div class="hint">Please enter your full name.</div>
+        </div>
+
+        <div class="field">
+          <label class="label-bar required" for="eventTime">Event Time</label>
+          <div class="date-confirm-row">
+            <input id="eventTime" name="EventTime" type="text"  placeholder="Select a date" readonly required>
+
+          </div>
+          <div class="hint" id="dateHint">Confirm the event time to load matching projects.</div>
+        </div>
+        
+        <div class="field">
+        <label class="label-bar required" for="workLocation">Work Location</label>
+
+        <select id="workLocation" name="WorkLocation" required>
+            <option value="">Select a work location</option>
+
+            <option value="AUSTRALIS">AUSTRALIS</option>
+            <option value="POLARIS">POLARIS</option>
+            <option value="POLARIS 2">POLARIS 2</option>
+            <option value="POLARIS 3">POLARIS 3</option>
+
+            <option value="SOLARIS">SOLARIS</option>
+            <option value="SOLARIS 2">SOLARIS 2</option>
+            <option value="SOLARIS 5">SOLARIS 5</option>
+
+            <option value="DRAGON PRINCE NO.1">DRAGON PRINCE NO.1</option>
+            <option value="DRAGON PRINCE NO.2">DRAGON PRINCE NO.2</option>
+            <option value="DRAGON PRINCE NO.3">DRAGON PRINCE NO.3</option>
+
+            <option value="12F Office">12F Office</option>
+            <option value="11F Office">11F Office</option>
+
+            <option value="Cijin Office">
+            Cijin Office (旗津辦公室)
+            </option>
+
+            <option value="Daliao 1 Warehouse">
+            Daliao 1 Warehouse (大寮1倉庫)
+            </option>
+
+            <option value="Daliao 2 Warehouse">
+            Daliao 2 Warehouse (大寮2倉庫)
+            </option>
+
+            <option value="Siaogang Warehouse">
+            Siaogang Warehouse (小港倉庫)
+            </option>
+
+            <option value="Cijin Warehouse">
+            Cijin Warehouse (旗津倉庫)
+            </option>
+
+            <option value="Other">Other</option>
+
+        </select>
+        </div>
+
+        <div class="field">
+          <label class="label-bar required" for="projectNo">Project No.</label>
+          <select id="projectNo" name="ProjectNo" required>
+            <option value="">Select a project</option>
+            <option value="N/A">N/A</option>
+          </select>
+          <div class="hint">Projects can be filtered by Event Time.</div>
+        </div>
+
+
+        <div class="field">
+          <label class="label-bar required" for="locationDetails">Location Details</label>
+          <input id="locationDetails" name="LocationDetails" type="text"
+                 placeholder="e.g. Other vessel, Certain wind farm, ship galley, cabin" required>
+        </div>
+        
+        <div class="field">
+          <label class="label-bar required" for="PartyChief">Party Chief (PC)</label>
+          <select id="PartyChief" name="PartyChief" required>
+            <option value="">Select a party chief</option>
+            <option value="N/A">N/A</option>
+          </select>
+          <div class="hint">Select the current party chief</div>
+        </div>
+
+        <div class="field full">
+          <label class="label-bar required"for="incidentDescription">Event Description</label>
+          <textarea id="incidentDescription" name="IncidentDescription"
+                    placeholder="Please describe the observation or event." required></textarea>
+        </div>
+
+        <div class="field full">
+          <label class="label-bar"for="ImmediateActionTaken">Immediate Action Taken</label>
+          <textarea id="ImmediateActionTaken" name="ImmediateActionTaken"
+                    placeholder="Describe the immediate action taken."></textarea> 
+        </div>
+
+
+        <div class="field">
+          <label class="label-bar">Attachment</label>
+          <div class="attachment-box">
+            <input id="attachment" name="Attachment" type="file"
+                   accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx">
+            <label class="file-picker" for="attachment">Add Attachment</label>
+            <span class="file-name" id="fileName">No attachments added</span>
+            <div class="attachment-list" id="attachmentList" aria-live="polite"></div>
+          </div>
+          <div class="hint">Add files one at a time. Maximum 3 attachments total; only 1 video is allowed. Videos: up to 20 MB each. Other files: up to 10 MB each.</div>
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <button class="submit-btn" id="submitBtn" type="submit">Submit</button>
+      </div>
+
+      <div class="status" id="status"></div>
+    </form>
+
+
+    <div id="successModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>✅ SOC Submitted Successfully</h2>
+
+        <p>
+            Please take a screenshot for your record.
+        </p>
+
+        <div id="submissionPreview"></div>
+
+        <button
+            class="close-btn"
+            type="button"
+            onclick="closeSuccessModal()">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay"
+     role="status" aria-live="polite" aria-hidden="true">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <div class="loading-title">Submitting...</div>
+        <div class="loading-description">
+            Please wait while your SOC is being submitted.
+        </div>
+    </div>
+</div>
+  </main>
+</div>
+
+<script>
+  /*
+    Replace these after your Power Automate flows are ready.
+
+    GET_PROJECT_URL:
+      GET -> Power Automate
+      Response should contain project name, start date and end date.
+
+    POST_SOC_URL:
+      POST -> Power Automate
+      Used to create the SOC record.
+  */
+  const GET_PROJECT_URL = "https://default4475b10450f2419fa8fcac004dcde2.c1.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/23/workflows/a0c6c7cf363c4d3e98ae0fe483a4910d/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FxOaGfoVW_XbosszAXx86goz9wD333o9MYCEvNdzmTA";
+  const POST_SOC_URL = "https://default4475b10450f2419fa8fcac004dcde2.c1.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/29/workflows/8d12fdb0f5994c8e8babd6418b8bd293/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4TL5dfvwFLLT1E8GI_ZHVgoGmIdO319X_mc0ynhWA00";
+
+  const form = document.getElementById("socForm");
+  const eventTime = document.getElementById("eventTime");
+  
+  const datePicker = flatpickr(eventTime, {
+    enableTime: true,
+
+    // 傳給後端的格式：2026-10-12T14:30
+    dateFormat: "Y-m-d\\TH:i",
+
+    // 顯示給使用者看的格式
+    altInput: true,
+    altFormat: "m/d/Y H:i",
+
+    // 使用 24 小時制
+    time_24hr: true,
+
+    // 避免使用者直接輸入錯誤格式
+    allowInput: false,
+
+    // 英文預設提示
+    altInputClass: "form-control",
+    locale: "default",
+
+    onReady: function(selectedDates, dateStr, instance) {
+      instance.altInput.placeholder = "Select a date";
+      instance.altInput.required = true;
+      eventTime.required = false;
+    },
+
+    onChange: function(selectedDates, dateStr) {
+      eventTime.dispatchEvent(
+        new Event("change", { bubbles: true })
+      );
+    }
+  });
+  const confirmDateBtn = document.getElementById("confirmDateBtn");
+  const dateHint = document.getElementById("dateHint");
+  const projectNo = document.getElementById("projectNo");
+  const partyChiefSelect = document.getElementById("PartyChief");
+  const attachment = document.getElementById("attachment");
+  const fileName = document.getElementById("fileName");
+  const attachmentList = document.getElementById("attachmentList");
+  // Keep selected files here because the file input is cleared after each selection.
+  let selectedAttachments = [];
+  const status = document.getElementById("status");
+  const submitBtn = document.getElementById("submitBtn");
+  const loadingOverlay = document.getElementById("loadingOverlay");
+
+  function showLoading() {
+        loadingOverlay.style.display = "flex";
+        loadingOverlay.classList.add("active");
+        loadingOverlay.setAttribute("aria-hidden", "false");
+    }
+
+  function hideLoading() {
+        loadingOverlay.style.display = "none";
+        loadingOverlay.classList.remove("active");
+        loadingOverlay.setAttribute("aria-hidden", "true");
+    }
+  const typeError = document.getElementById("typeError");
+  const typeSection = document.getElementById("typeSection");
+  const successModal = document.getElementById("successModal");
+  const submissionPreview = document.getElementById("submissionPreview");
+  const MAX_FILES = 3;
+  const MAX_FILE_SIZE = 10 * 1024 * 1024;
+  const MAX_VIDEO_SIZE = 20 * 1024 * 1024;
+  const MAX_VIDEOS = 1;
+
+  function validateAttachments(files) {
+      if (files.length > MAX_FILES) {
+          return "You can upload a maximum of 3 attachments.";
+      }
+
+      const videos = files.filter(file =>
+          file.type.startsWith("video/")
+      );
+
+      if (videos.length > MAX_VIDEOS) {
+          return "You can upload a maximum of 1 video.";
+      }
+
+      for (const file of files) {
+          if (file.type.startsWith("video/")) {
+              if (file.size > MAX_VIDEO_SIZE) {
+                  return `${file.name}: Video must not exceed 20 MB.`;
+              }
+          } else if (file.size > MAX_FILE_SIZE) {
+              return `${file.name}: File must not exceed 10 MB.`;
+          }
+      }
+
+      return "";
+  }
+
+
+  async function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+
+          reader.onload = () => {
+              resolve(reader.result.split(",")[1]);
+          };
+
+          reader.onerror = () => {
+              reject(reader.error);
+          };
+
+          reader.readAsDataURL(file);
+      });
+  }
+
+function showSuccessModal(payload, socNo) {
+    submissionPreview.innerHTML = `
+
+    <div class="receipt-card">
+       
+        <div class="receipt-row">
+            <div class="receipt-label">SOC No.</div>
+            <div class="receipt-value">
+                ${socNo}
+            </div>
+        </div>
+        
+        <div class="receipt-row">
+            <div class="receipt-label">Event Time</div>
+            <div class="receipt-value">
+                ${
+                    (() => {
+                        const dt = new Date(payload.EventTime);
+                        return (
+                            dt.getFullYear() + '-' +
+                            String(dt.getMonth() + 1).padStart(2, '0') + '-' +
+                            String(dt.getDate()).padStart(2, '0') + ' ' +
+                            String(dt.getHours()).padStart(2, '0') + ':' +
+                            String(dt.getMinutes()).padStart(2, '0')
+                        );
+                    })()
+                }
+            </div>
+        </div>
+
+
+        <div class="receipt-row">
+            <div class="receipt-label">Reported By</div>
+            <div class="receipt-value">
+                ${payload.ReportedBy}
+            </div>
+        </div>
+
+        <div class="receipt-row">
+          <div class="receipt-label">Type</div>
+          <div class="receipt-value">
+            ${payload.Type}
+          </div>
+        </div>
+
+        <div class="receipt-row">
+          <div class="receipt-label">Project</div>
+          <div class="receipt-value"> 
+            ${payload.ProjectNo}
+          </div>
+        </div>
+
+        <div class="receipt-row">
+          <div class="receipt-label">Work Location</div>
+          <div class="receipt-value"> 
+            ${payload.workLocation}
+          </div>
+        </div>
+
+        <div class="receipt-row">
+          <div class="receipt-label">Location Details</div>
+          <div class="receipt-value"> 
+            ${payload.LocationDetails}
+          </div>
+        </div>
+
+        <div class="receipt-row">
+            <div class="receipt-label">
+            Description
+            </div>
+
+           <div id="descText" 
+              data-full="${encodeURIComponent(payload.IncidentDescription)}"
+              data-short="${encodeURIComponent(shorten(payload.IncidentDescription))}"
+              data-open="false">${shorten(payload.IncidentDescription)}</div>
+
+            </div>
+
+            <button
+                type="button"
+                class="inline-show-btn"
+                onclick="toggleText('descText', this)">
+
+                Show Full
+
+            </button>
+        </div>
+
+        <div class="receipt-row">
+            <div class="receipt-label">
+            Immediate Action Taken
+            </div>
+
+           <div id="actionText" 
+              data-full="${encodeURIComponent(payload.ImmediateActionTaken)}"
+              data-short="${encodeURIComponent(shorten(payload.ImmediateActionTaken))}"
+              data-open="false">${shorten(payload.ImmediateActionTaken)}</div>
+
+            </div>
+
+            <button
+                type="button"
+                class="inline-show-btn"
+                onclick="toggleText('actionText', this)">
+
+                Show Full
+
+            </button>
+        </div>
+
+
+    </div>
+    
+        <!-- Attachments -->
+        <div class="receipt-row">
+            <div class="receipt-label">Attachments</div>
+            <div class="receipt-value">
+                ${
+                    payload.Attachments && payload.Attachments.length > 0
+                    ? `<ul style="margin: 6px 0 0; padding-left: 24px;">
+                        ${payload.Attachments.map(file =>
+                            `<li style="margin-bottom: 6px; overflow-wrap: anywhere;">
+                                ${escapeHtml(file.FileName)}
+                            </li>`
+                        ).join("")}
+                       </ul>`
+                    : "No attachments"
+                }
+            </div>
+        </div>
+    `;
+
+      successModal.style.display =
+          "flex";
+  }
+
+  function closeSuccessModal() {
+
+      successModal.style.display =
+          "none";
+  }
+
+  let allProjects = [];
+  let confirmedEventTime = "";
+
+  function getSelectedType() {
+    const selected = document.querySelector('input[name="Type"]:checked');
+    return selected ? selected.value : "";
+  }
+
+  function parseDate(value) {
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  function resetPartyChiefSelection() {
+    partyChiefSelect.innerHTML = `
+      <option value="">Select a party chief</option>
+      <option value="N/A">N/A</option>
+    `;
+  }
+
+  function resetProjectSelection(message = "Confirm the event time to load matching projects.") {
+    projectNo.innerHTML = `
+        <option value="">Select a project</option>
+        <option value="N/A">N/A</option>
+        <option value="Unknown">Unknown</option>
+    `;
+    resetPartyChiefSelection();
+  }
+
+  // Read the standardized PartyChief and PartyChiefEmail fields from project GET data.
+  function getProjectPartyChief(project) {
+    const value = project?.PartyChief;
+    return value !== null && value !== undefined && String(value).trim() !== ""
+      ? String(value).trim()
+      : "Unknown";
+  }
+
+  function getProjectPartyChiefEmail(project) {
+    const value = project?.PartyChiefEmail;
+    return value !== null && value !== undefined && String(value).trim() !== ""
+      ? String(value).trim()
+      : "Unknown";
+  }
+
+  function getProjectVesselName(project) {
+    return String(project?.VesselName ?? "").trim();
+  }
+
+  function getProjectVesselEmail(project) {
+        return String(project?.VesselEmail ?? "").trim();
+ }
+
+  function updatePartyChiefFromProject() {
+    const selectedProjectNo = projectNo.value;
+    resetPartyChiefSelection();
+
+    // Keep the placeholder selected until the user explicitly chooses a party chief.
+    if (!selectedProjectNo) return;
+
+    if (selectedProjectNo === "N/A") {
+      partyChiefSelect.innerHTML = '<option value="N/A">N/A</option>';
+      partyChiefSelect.value = "N/A";
+      return;
+    }
+
+    if (selectedProjectNo === "Unknown") {
+      partyChiefSelect.innerHTML = '<option value="Unknown">Unknown</option>';
+      partyChiefSelect.value = "Unknown";
+      return;
+    }
+
+    let partyChief = "Unknown";
+    let partyChiefEmail = "Unknown";
+
+    if (selectedProjectNo !== "Unknown") {
+      const selectedProject = allProjects.find(project =>
+        String(project.ProjectNo ?? "").trim() === selectedProjectNo
+      );
+
+      if (selectedProject) {
+        partyChief = getProjectPartyChief(selectedProject);
+        partyChiefEmail = getProjectPartyChiefEmail(selectedProject);
+      }
+    }
+
+    const unknownOption = document.createElement("option");
+    unknownOption.value = "Unknown";
+    unknownOption.textContent = "Unknown";
+    partyChiefSelect.appendChild(unknownOption);
+
+    if (partyChief !== "Unknown") {
+      const pcOption = document.createElement("option");
+      // The displayed option is the PC name; its value is the PC email for submission.
+      pcOption.value = partyChiefEmail;
+      pcOption.textContent = partyChief;
+      partyChiefSelect.appendChild(pcOption);
+    }
+  }
+
+async function loadProjects() {
+
+    if (!GET_PROJECT_URL) {
+        resetProjectSelection("GET API not connected");
+        return;
+    }
+
+    try {
+
+        dateHint.textContent =
+            "Loading project data...";
+
+        console.log("GET URL =", GET_PROJECT_URL);
+
+        const response = await fetch(
+            GET_PROJECT_URL,
+            {
+                method: "GET"
+            }
+        );
+
+        console.log("RESPONSE =", response);
+
+        if (!response.ok) {
+            throw new Error(
+                "GET request failed"
+            );
+        }
+
+        const result =
+            await response.json();
+
+        console.log("RESULT =", result);
+
+        allProjects =
+            result.data ||
+            result.body?.data ||
+            result.value ||
+            [];
+
+        console.log(
+            "PROJECTS =",
+            allProjects
+        );
+
+        filterProjectsByEventTime();
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        resetProjectSelection(
+            "Unable to load projects"
+        );
+
+        dateHint.textContent =
+            "Project data could not be loaded.";
+    }
+ }
+ 
+    function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        })[char]);
+    }
+ 
+  function shorten(text, limit = 120) {
+
+      if (!text) return "";
+
+      if (text.length <= limit)
+          return text;
+
+      return text.substring(0, limit) + "...";
+  }
+  function toggleText(id, button) {
+
+    const container =
+        document.getElementById(id);
+
+    const opened =
+        container.dataset.open === "true";
+
+    if (opened) {
+
+        container.innerText =
+            decodeURIComponent(
+                container.dataset.short
+            );
+
+        container.dataset.open =
+            "false";
+
+        button.textContent =
+            "Show Full";
+
+    } else {
+
+        container.innerText =
+            decodeURIComponent(
+                container.dataset.full
+            );
+
+        container.dataset.open =
+            "true";
+
+        button.textContent =
+            "Hide";
+
+    }
+  }
+ 
+
+  function filterProjectsByEventTime() {
+    console.log(
+    "EVENT TIME =",
+    confirmedEventTime
+   );
+    const event = parseDate(confirmedEventTime);
+
+    if (!event) {
+      resetProjectSelection();
+      return;
+    }
+
+    const matches = allProjects.filter(project => {
+      if (!project.ProjectNo || !project.StartDate || !project.EndDate) return false;
+
+      const start = parseDate(project.StartDate);
+      const end = parseDate(project.EndDate);
+
+      return start && end && event >= start && event <= end;
+    });
+
+    projectNo.innerHTML = `
+    <option value="">Select a project</option>
+    <option value="N/A">N/A</option>
+    <option value="Unknown">Unknown</option>`;
+    resetPartyChiefSelection();
+
+    matches.forEach(project => {
+        const option = document.createElement("option");
+
+        option.value = project.ProjectNo;
+        option.textContent =
+            `${project.ProjectNo} - ${project.ProjectName}`;
+
+        option.dataset.projectName =
+            project.ProjectName || "";
+
+        projectNo.appendChild(option);
+    });
+
+    if (matches.length === 0) {
+
+        dateHint.textContent =
+            "No matching project found. You may select Unknown.";
+
+    } else {
+
+        dateHint.textContent =
+            `${matches.length} matching project${matches.length > 1 ? "s" : ""} found.`;
+
+    }
+  }
+
+  projectNo.addEventListener("change", updatePartyChiefFromProject);
+
+  eventTime.addEventListener("change", async () => {
+
+  if (!eventTime.value) {
+    resetProjectSelection();
+    return;
+  }
+
+  confirmedEventTime = eventTime.value;
+
+  await loadProjects();
+
+  });
+
+  function formatFileSize(bytes) {
+    return bytes >= 1024 * 1024
+      ? `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+      : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  }
+
+  function renderAttachmentList() {
+    attachmentList.innerHTML = "";
+    fileName.textContent = selectedAttachments.length
+      ? `${selectedAttachments.length} of ${MAX_FILES} attachment(s) added`
+      : "No attachments added";
+
+    selectedAttachments.forEach((file, index) => {
+      const item = document.createElement("div");
+      item.className = "attachment-item";
+
+      const icon = document.createElement("div");
+      icon.className = "attachment-file-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML = file.type.startsWith("video/")
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="13" height="14" rx="2"></rect><path d="m16 10 5-3v10l-5-3z"></path></svg>'
+        : file.type.startsWith("image/")
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h8"></path></svg>';
+
+      const info = document.createElement("div");
+      info.className = "attachment-item-info";
+
+      const name = document.createElement("div");
+      name.className = "attachment-item-name";
+      name.textContent = file.name;
+
+      const size = document.createElement("span");
+      size.className = "attachment-item-size";
+      size.textContent = formatFileSize(file.size);
+      name.appendChild(size);
+      info.appendChild(name);
+
+      const removeButton = document.createElement("button");
+      removeButton.type = "button";
+      removeButton.className = "attachment-remove";
+      removeButton.textContent = "Remove";
+      removeButton.setAttribute("aria-label", `Remove ${file.name}`);
+      removeButton.addEventListener("click", () => {
+        selectedAttachments.splice(index, 1);
+        renderAttachmentList();
+        status.textContent = "";
+      });
+
+      item.appendChild(icon);
+      item.appendChild(info);
+      item.appendChild(removeButton);
+      attachmentList.appendChild(item);
+    });
+  }
+
+  attachment.addEventListener("change", () => {
+    const file = attachment.files && attachment.files[0];
+    // Clear the input so the same file can be selected again after removal if needed.
+    attachment.value = "";
+    if (!file) return;
+    // 不允許相同檔名
+    const duplicatedFile = selectedAttachments.some(
+        existing =>
+            existing.name.trim().toLowerCase() ===
+            file.name.trim().toLowerCase()
+    );
+    
+    if (duplicatedFile) {
+        alert(
+            `File "${file.name}" has already been added.`
+        );
+        return;
+    }
+
+
+    if (selectedAttachments.length >= MAX_FILES) {
+      status.textContent = "You can upload a maximum of 3 attachments.";
+      return;
+    }
+
+    const candidateFiles = [...selectedAttachments, file];
+    const validationError = validateAttachments(candidateFiles);
+    if (validationError) {
+      status.textContent = validationError;
+      return;
+    }
+
+    selectedAttachments.push(file);
+    status.textContent = "";
+    renderAttachmentList();
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const type = getSelectedType();
+
+
+   if (!eventTime.value) {
+      status.textContent =
+          "Please select an Event Time.";
+      return;
+    }
+
+    if (!type) {
+
+        typeError.textContent =
+            "Please select one Type.";
+
+        typeError.style.display =
+            "block";
+
+        typeSection.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        return;
+    }
+    typeError.style.display = "none";
+
+    // Validate the accumulated attachment list before converting files to Base64.
+    const files = [...selectedAttachments];
+    const attachmentError = validateAttachments(files);
+    if (attachmentError) {
+      status.textContent = attachmentError;
+      return;
+    }
+
+    let attachmentsData;
+    try {
+      attachmentsData = await Promise.all(
+        files.map(async (file) => ({
+          FileName: file.name,
+          ContentType: file.type || "application/octet-stream",
+          ContentBase64: await fileToBase64(file)
+        }))
+      );
+    } catch (error) {
+      status.textContent = "Unable to read the selected attachment(s). Please try again.";
+      console.error(error);
+      return;
+    }
+
+    // Resolve the selected project before building the payload.
+    // "N/A" and "Unknown" are valid selections with no matching project record.
+    const selectedProject = projectNo.value === "N/A" || projectNo.value === "Unknown"
+      ? null
+      : allProjects.find(project =>
+          String(project.ProjectNo ?? "").trim() === projectNo.value
+        ) || null;
+    const isPartyChiefNotApplicable = partyChiefSelect.value === "N/A";
+
+    const payload = {
+        EventTime: eventTime.value,
+        ReportedBy: document.getElementById("reportedBy").value.trim(),
+        WorkLocation: document.getElementById("workLocation").value,
+        LocationDetails: document.getElementById("locationDetails").value.trim(),
+        IncidentDescription: document.getElementById("incidentDescription").value.trim(),
+        ImmediateActionTaken: document.getElementById("ImmediateActionTaken").value.trim(),
+        Type: type,
+        ProjectNo: projectNo.value,
+
+        PartyChief: isPartyChiefNotApplicable
+          ? "N/A"
+          : getProjectPartyChief(selectedProject),
+        PartyChiefEmail: isPartyChiefNotApplicable
+          ? "N/A"
+          : getProjectPartyChiefEmail(selectedProject),
+        VesselName: getProjectVesselName(selectedProject),
+        VesselEmail: getProjectVesselEmail(selectedProject),
+
+        Attachments: attachmentsData
+    };
+
+    if (!POST_SOC_URL) {
+      status.textContent = "Preview mode: the POST API has not been connected yet.";
+      console.log("SOC payload:", payload);
+      return;
+    }
+
+
+    submitBtn.disabled = true;
+    status.textContent = "Submitting...";
+    showLoading();
+
+    try {
+        const response = await fetch(POST_SOC_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                `POST request failed: HTTP ${response.status}`
+            );
+        }
+
+        // 等待 Flow 回傳 JSON
+        const result = await response.json();
+
+        // 讀取 Flow 回傳的 SOC 編號
+        const socNo =
+            result.SOCNo ||
+            result.socNo ||
+            result.body?.SOCNo ||
+            result.body?.socNo;
+
+        // 沒有 SOC 編號，就不視為成功
+        if (
+            result.success !== true ||
+            typeof socNo !== "string" ||
+            !socNo.trim()
+        ) {
+            throw new Error(
+                "Flow did not return a valid SOC number."
+            );
+        }
+
+        // 收到有效 SOC 編號後，才顯示成功畫面
+        showSuccessModal(payload, socNo.trim());
+
+        status.textContent = "SOC submitted successfully.";
+
+        form.reset();
+        selectedAttachments = [];
+        renderAttachmentList();
+
+        confirmedEventTime = "";
+        datePicker.clear();
+
+        dateHint.textContent =
+            "Confirm the event time to load matching projects.";
+
+        resetProjectSelection();
+
+    } catch (error) {
+        status.textContent =
+            "Submission failed or SOC number was not returned. Please check the result before retrying.";
+
+        console.error("SOC submission error:", error);
+
+    } finally {
+        hideLoading();
+        submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
