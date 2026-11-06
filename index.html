@@ -49,6 +49,7 @@ body {
     padding: 15px 25px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     min-height: 90px;
 }
 
@@ -61,6 +62,24 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.language-toggle {
+    border: 1px solid rgba(255, 255, 255, .7);
+    border-radius: 999px;
+    padding: 8px 14px;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible {
+    background: #fff;
+    color: #0F2A60;
 }
 
 /* =========================
@@ -560,8 +579,11 @@ textarea {
         padding: 6px 10px 6px 34px;
     }
     .logo-space {
-
         width: 220px;
+    }
+
+    .language-toggle {
+        padding: 7px 11px;
 
         height: 50px;
     }
@@ -749,76 +771,78 @@ textarea {
 
     <div class="logo-space">
         <img
-            src="https://i.postimg.cc/jqcgNWD5/DG-Logo-zhong-wen-RGB-long-quan-wht.png"
+            src="images/DG_Logo_中文_RGB_龍銓_wht.png"
             alt="Dragon Geosciences Logo">
     </div>
+    <button class="language-toggle" id="languageToggle" type="button"
+            aria-label="Switch to Chinese">中文</button>
     </header>
-    <div class="soc-title">    SAFETY OBSERVATION CARD  </div>
+    <div class="soc-title" data-i18n="title">SAFETY OBSERVATION CARD</div>
 
     <form class="form" id="socForm">
       <div class="grid">
 
         <div class="field full" id="typeSection">
-          <label class="label-bar required" class="required">Type</label>
+          <label class="label-bar required" data-i18n="type">Type</label>
           <div class="type-options">
             <div class="type-option">
               <input id="nearMiss" type="radio" name="Type" value="Near Miss">
-              <label for="nearMiss">Near Miss</label>
+              <label for="nearMiss" data-i18n="nearMiss">Near Miss</label>
             </div>
             <div class="type-option">
               <input id="unsafeAct" type="radio" name="Type" value="Unsafe Act">
-              <label for="unsafeAct">Unsafe Act</label>
+              <label for="unsafeAct" data-i18n="unsafeAct">Unsafe Act</label>
             </div>
             <div class="type-option">
               <input id="unsafeCondition" type="radio" name="Type" value="Unsafe Condition">
-              <label for="unsafeCondition">Unsafe Condition</label>
+              <label for="unsafeCondition" data-i18n="unsafeCondition">Unsafe Condition</label>
             </div>
 
             <div class="type-option">
               <input id="hygiene" type="radio" name="Type" value="Hygiene">
-              <label for="hygiene">Hygiene</label>
+              <label for="hygiene" data-i18n="hygiene">Hygiene</label>
             </div>
             <div class="type-option">
               <input id="quality" type="radio" name="Type" value="Quality">
-              <label for="quality">Quality</label>
+              <label for="quality" data-i18n="quality">Quality</label>
             </div>
             <div class="type-option">
               <input id="other" type="radio" name="Type" value="Other">
-              <label for="other">Other</label>
+              <label for="other" data-i18n="other">Other</label>
             </div>
             <div class="type-option positive">
               <input id="positiveFeedback" type="radio" name="Type" value="Positive Feedback">
-              <label for="positiveFeedback">Positive Feedback</label>
+              <label for="positiveFeedback" data-i18n="positiveFeedback">Positive Feedback</label>
             </div>
             <div class="type-option positive">
               <input id="Immediate Action" type="radio" name="Type" value="Immediate Action">
-              <label for="Immediate Action">Immediate Action</label>
+              <label for="Immediate Action" data-i18n="immediateActionType">Immediate Action</label>
             </div>
           </div>
-          <div class="hint">Select one observation type.</div>
+          <div class="hint" data-i18n="typeHint">Select one observation type.</div>
           <div id="typeError" class="field-error"></div>
         </div>
         
         <div class="field">
-          <label class="label-bar required" for="reportedBy">Reported By</label>
+          <label class="label-bar required" for="reportedBy" data-i18n="reportedBy">Reported By</label>
           <input id="reportedBy" name="ReportedBy" type="text" required>
-          <div class="hint">Please enter your full name.</div>
+          <div class="hint" data-i18n="reportedByHint">Please enter your full name.</div>
         </div>
 
         <div class="field">
-          <label class="label-bar required" for="eventTime">Event Time</label>
+          <label class="label-bar required" for="eventTime" data-i18n="eventTime">Event Time</label>
           <div class="date-confirm-row">
-            <input id="eventTime" name="EventTime" type="text"  placeholder="Select a date" readonly required>
+            <input id="eventTime" name="EventTime" type="text" placeholder="Select a date" data-i18n-placeholder="datePlaceholder" readonly required>
 
           </div>
-          <div class="hint" id="dateHint">Confirm the event time to load matching projects.</div>
+          <div class="hint" id="dateHint" data-i18n="dateHint">Confirm the event time to load matching projects.</div>
         </div>
         
         <div class="field">
-        <label class="label-bar required" for="workLocation">Work Location</label>
+        <label class="label-bar required" for="workLocation" data-i18n="workLocation">Work Location</label>
 
         <select id="workLocation" name="WorkLocation" required>
-            <option value="">Select a work location</option>
+            <option value="" data-i18n="selectWorkLocation">Select a work location</option>
 
             <option value="AUSTRALIS">AUSTRALIS</option>
             <option value="POLARIS">POLARIS</option>
@@ -862,59 +886,62 @@ textarea {
         </div>
 
         <div class="field">
-          <label class="label-bar required" for="projectNo">Project No.</label>
+          <label class="label-bar required" for="projectNo" data-i18n="projectNo">Project No.</label>
           <select id="projectNo" name="ProjectNo" required>
-            <option value="">Select a project</option>
-            <option value="N/A">N/A</option>
+            <option value="" data-i18n="selectProject">Select a project</option>
+            <option value="N/A" data-i18n="notApplicable">N/A 不適用</option>
           </select>
-          <div class="hint">Projects can be filtered by Event Time.</div>
+          <div class="hint" data-i18n="projectHint">Projects can be filtered by Event Time.</div>
         </div>
 
 
         <div class="field">
-          <label class="label-bar required" for="locationDetails">Location Details</label>
+          <label class="label-bar required" for="locationDetails" data-i18n="locationDetails">Location Details</label>
           <input id="locationDetails" name="LocationDetails" type="text"
-                 placeholder="e.g. Other vessel, Certain wind farm, ship galley, cabin" required>
+                 placeholder="e.g. Other vessel, Certain wind farm, ship galley, cabin"
+                 data-i18n-placeholder="locationPlaceholder" required>
         </div>
         
         <div class="field">
-          <label class="label-bar required" for="PartyChief">Party Chief (PC)</label>
+          <label class="label-bar required" for="PartyChief" data-i18n="partyChief">Party Chief (PC)</label>
           <select id="PartyChief" name="PartyChief" required>
-            <option value="">Select a party chief</option>
-            <option value="N/A">N/A</option>
+            <option value="" data-i18n="selectPartyChief">Select a party chief</option>
+            <option value="N/A" data-i18n="notApplicable">N/A 不適用</option>
           </select>
-          <div class="hint">Select the current party chief</div>
+          <div class="hint" data-i18n="partyChiefHint">Select the current party chief</div>
         </div>
 
         <div class="field full">
-          <label class="label-bar required"for="incidentDescription">Event Description</label>
+          <label class="label-bar required" for="incidentDescription" data-i18n="eventDescription">Event Description</label>
           <textarea id="incidentDescription" name="IncidentDescription"
-                    placeholder="Please describe the observation or event." required></textarea>
+                    placeholder="Please describe the observation or event."
+                    data-i18n-placeholder="descriptionPlaceholder" required></textarea>
         </div>
 
         <div class="field full">
-          <label class="label-bar"for="ImmediateActionTaken">Immediate Action Taken</label>
+          <label class="label-bar" for="ImmediateActionTaken" data-i18n="immediateAction">Immediate Action Taken</label>
           <textarea id="ImmediateActionTaken" name="ImmediateActionTaken"
-                    placeholder="Describe the immediate action taken."></textarea> 
+                    placeholder="Describe the immediate action taken."
+                    data-i18n-placeholder="actionPlaceholder"></textarea> 
         </div>
 
 
         <div class="field">
-          <label class="label-bar">Attachment</label>
+          <label class="label-bar" data-i18n="attachment">Attachment</label>
           <div class="attachment-box">
             <input id="attachment" name="Attachment" type="file"
                    accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx">
-            <label class="file-picker" for="attachment">Add Attachment</label>
-            <span class="file-name" id="fileName">No attachments added</span>
+            <label class="file-picker" for="attachment" data-i18n="addAttachment">Add Attachment</label>
+            <span class="file-name" id="fileName" data-i18n="noAttachments">No attachments added</span>
             <div class="attachment-list" id="attachmentList" aria-live="polite"></div>
           </div>
-          <div class="hint">Add files one at a time. Maximum 3 attachments total; only 1 video is allowed. Videos: up to 20 MB each. Other files: up to 10 MB each.</div>
+          <div class="hint" data-i18n="attachmentHint">Add files one at a time. Maximum 3 attachments total; only 1 video is allowed. Videos: up to 20 MB each. Other files: up to 10 MB each.</div>
         </div>
 
       </div>
 
       <div class="actions">
-        <button class="submit-btn" id="submitBtn" type="submit">Submit</button>
+        <button class="submit-btn" id="submitBtn" type="submit" data-i18n="submit">Submit</button>
       </div>
 
       <div class="status" id="status"></div>
@@ -925,10 +952,10 @@ textarea {
 
     <div class="modal-content">
 
-        <h2>✅ SOC Submitted Successfully</h2>
+        <h2 data-i18n="submitted">✅ SOC Submitted Successfully</h2>
 
         <p>
-            Please take a screenshot for your record.
+            <span data-i18n="screenshotHint">Please take a screenshot for your record.</span>
         </p>
 
         <div id="submissionPreview"></div>
@@ -937,7 +964,7 @@ textarea {
             class="close-btn"
             type="button"
             onclick="closeSuccessModal()">
-            Close
+            <span data-i18n="close">Close</span>
         </button>
 
     </div>
@@ -949,9 +976,9 @@ textarea {
      role="status" aria-live="polite" aria-hidden="true">
     <div class="loading-content">
         <div class="loading-spinner"></div>
-        <div class="loading-title">Submitting...</div>
+        <div class="loading-title" data-i18n="submitting">Submitting...</div>
         <div class="loading-description">
-            Please wait while your SOC is being submitted.
+            <span data-i18n="submitWait">Please wait while your SOC is being submitted.</span>
         </div>
     </div>
 </div>
@@ -973,10 +1000,153 @@ textarea {
   const GET_PROJECT_URL = "https://default4475b10450f2419fa8fcac004dcde2.c1.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/23/workflows/a0c6c7cf363c4d3e98ae0fe483a4910d/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FxOaGfoVW_XbosszAXx86goz9wD333o9MYCEvNdzmTA";
   const POST_SOC_URL = "https://default4475b10450f2419fa8fcac004dcde2.c1.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/29/workflows/8d12fdb0f5994c8e8babd6418b8bd293/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4TL5dfvwFLLT1E8GI_ZHVgoGmIdO319X_mc0ynhWA00";
 
+  const translations = {
+    en: {
+      title: "SAFETY OBSERVATION CARD", type: "Type", typeHint: "Select one observation type.",
+      nearMiss: "Near Miss", unsafeAct: "Unsafe Act", unsafeCondition: "Unsafe Condition",
+      hygiene: "Hygiene", quality: "Quality", other: "Other", positiveFeedback: "Positive Feedback",
+      immediateActionType: "Immediate Action",
+      reportedBy: "Reported By", reportedByHint: "Please enter your full name.",
+      eventTime: "Event Time", dateHint: "Confirm the event time to load matching projects.",
+      datePlaceholder: "Select a date",
+      workLocation: "Work Location", selectWorkLocation: "Select a work location",
+      projectNo: "Project No.", selectProject: "Select a project",
+      notApplicable: "N/A",
+      projectHint: "Projects can be filtered by Event Time.", locationDetails: "Location Details",
+      locationPlaceholder: "e.g. Other vessel, Certain wind farm, ship galley, cabin",
+      selectPartyChief: "Select a party chief",
+      partyChief: "Party Chief (PC)", partyChiefHint: "Select the current party chief",
+      eventDescription: "Event Description", descriptionPlaceholder: "Please describe the observation or event.",
+      immediateAction: "Immediate Action Taken", actionPlaceholder: "Describe the immediate action taken.",
+      attachment: "Attachment", addAttachment: "Add Attachment", noAttachments: "No attachments added",
+      attachmentCount: "attachment(s) added", remove: "Remove",
+      maxAttachments: "You can upload a maximum of 3 attachments.",
+      maxVideos: "You can upload a maximum of 1 video.",
+      videoSizeError: "Video must not exceed 20 MB.",
+      fileSizeError: "File must not exceed 10 MB.",
+      duplicateAttachment: "has already been added.",
+      readAttachmentError: "Unable to read the selected attachment(s). Please try again.",
+      attachmentHint: "Add files one at a time. Maximum 3 attachments total; only 1 video is allowed. Videos: up to 20 MB each. Other files: up to 10 MB each.",
+      submit: "Submit", submitted: "✅ SOC Submitted Successfully",
+      screenshotHint: "Please take a screenshot for your record.", close: "Close",
+      receiptSocNo: "SOC No.", receiptEventTime: "Event Time", receiptReportedBy: "Reported By",
+      receiptType: "Type", receiptProject: "Project", receiptWorkLocation: "Work Location",
+      receiptLocationDetails: "Location Details", receiptDescription: "Description",
+      receiptImmediateAction: "Immediate Action Taken", receiptAttachments: "Attachments",
+      showFull: "Show Full", hide: "Hide", noReceiptAttachments: "No attachments",
+      submitting: "Submitting...", submitWait: "Please wait while your SOC is being submitted."
+    },
+    zh: {
+      title: "安全觀察卡", type: "類型", typeHint: "請選擇一種觀察類型。",
+      nearMiss: "未遂事件", unsafeAct: "不安全行為", unsafeCondition: "不安全狀況",
+      hygiene: "衛生", quality: "品質", other: "其他", positiveFeedback: "正向回饋",
+      immediateActionType: "立即措施",
+      reportedBy: "填報人", reportedByHint: "請輸入您的姓名。",
+      eventTime: "事件時間", dateHint: "確認事件時間後，系統將載入符合的專案。",
+      datePlaceholder: "選擇日期",
+      workLocation: "工作地點", selectWorkLocation: "選擇工作地點",
+      projectNo: "專案編號", selectProject: "選擇專案",
+      notApplicable: "N/A 不適用",
+      projectHint: "可依事件時間篩選專案。", locationDetails: "地點詳細資訊",
+      locationPlaceholder: "例如：其他船舶、特定風場、船艙、房間",
+      selectPartyChief: "選擇領隊",
+      partyChief: "領隊 (Party Chief)", partyChiefHint: "選擇目前的領隊",
+      eventDescription: "事件描述", descriptionPlaceholder: "請描述觀察到的情況或事件。",
+      immediateAction: "已採取的立即措施", actionPlaceholder: "請描述已採取的立即措施。",
+      attachment: "附件", addAttachment: "新增附件", noAttachments: "尚未新增附件",
+      attachmentCount: "個附件已新增", remove: "移除",
+      maxAttachments: "最多只能上傳 3 個附件。",
+      maxVideos: "最多只能上傳 1 個影片。",
+      videoSizeError: "影片大小不可超過 20 MB。",
+      fileSizeError: "檔案大小不可超過 10 MB。",
+      duplicateAttachment: "已經新增過此檔案。",
+      readAttachmentError: "無法讀取所選附件，請再試一次。",
+      attachmentHint: "請一次新增一個檔案。最多 3 個附件，且只能有 1 個影片。影片每個最多 20 MB，其他檔案每個最多 10 MB。",
+      submit: "送出", submitted: "✅ SOC 已成功送出",
+      screenshotHint: "請截圖保存此紀錄。", close: "關閉",
+      receiptSocNo: "SOC 編號", receiptEventTime: "事件時間", receiptReportedBy: "填報人",
+      receiptType: "類型", receiptProject: "專案", receiptWorkLocation: "工作地點",
+      receiptLocationDetails: "地點詳細資訊", receiptDescription: "描述",
+      receiptImmediateAction: "已採取的立即措施", receiptAttachments: "附件",
+      showFull: "顯示完整內容", hide: "收合", noReceiptAttachments: "沒有附件",
+      submitting: "送出中...", submitWait: "請稍候，系統正在送出您的 SOC。"
+    }
+  };
+  let currentLanguage = localStorage.getItem("socLanguage") || "en";
+  let activeSubmission = null;
+  let datePicker = null;
+  const languageToggle = document.getElementById("languageToggle");
+  const flatpickrZhLocale = {
+    firstDayOfWeek: 1,
+    weekdays: {
+      shorthand: ["日", "一", "二", "三", "四", "五", "六"],
+      longhand: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+    },
+    months: {
+      shorthand: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+      longhand: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+    },
+    time_24hr: true
+  };
+
+  function t(key) {
+    return translations[currentLanguage][key];
+  }
+
+  function getDatePickerLocale(language = currentLanguage) {
+    return language === "zh" ? flatpickrZhLocale : "default";
+  }
+
+  function syncDatePickerLanguage() {
+    if (!datePicker) return;
+
+    datePicker.set("locale", getDatePickerLocale());
+    datePicker.altInput.placeholder = translations[currentLanguage].datePlaceholder;
+    datePicker.redraw();
+  }
+
+  function applyLanguage(language) {
+    currentLanguage = translations[language] ? language : "en";
+    localStorage.setItem("socLanguage", currentLanguage);
+    document.documentElement.lang = currentLanguage;
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+      element.textContent = translations[currentLanguage][element.dataset.i18n];
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+      element.placeholder = translations[currentLanguage][element.dataset.i18nPlaceholder];
+    });
+    const projectPlaceholder = document.querySelector("#projectNo option[value='']");
+    if (projectPlaceholder) {
+      projectPlaceholder.textContent = translations[currentLanguage].selectProject;
+    }
+    const partyChiefPlaceholder = document.querySelector("#PartyChief option[value='']");
+    if (partyChiefPlaceholder) {
+      partyChiefPlaceholder.textContent = translations[currentLanguage].selectPartyChief;
+    }
+    const dateInput = document.querySelector(".flatpickr-input");
+    if (dateInput) {
+      dateInput.placeholder = translations[currentLanguage].datePlaceholder;
+    }
+    syncDatePickerLanguage();
+    if (activeSubmission) {
+      showSuccessModal(activeSubmission.payload, activeSubmission.socNo);
+    }
+    languageToggle.textContent = currentLanguage === "en" ? "中文" : "English";
+    languageToggle.setAttribute("aria-label", currentLanguage === "en" ? "Switch to Chinese" : "切換至英文");
+  }
+
+  languageToggle.addEventListener("click", () => {
+    applyLanguage(currentLanguage === "en" ? "zh" : "en");
+    if (typeof renderAttachmentList === "function") {
+      renderAttachmentList();
+    }
+  });
+  applyLanguage(currentLanguage);
+
   const form = document.getElementById("socForm");
   const eventTime = document.getElementById("eventTime");
   
-  const datePicker = flatpickr(eventTime, {
+  datePicker = flatpickr(eventTime, {
     enableTime: true,
 
     // 傳給後端的格式：2026-10-12T14:30
@@ -994,12 +1164,16 @@ textarea {
 
     // 英文預設提示
     altInputClass: "form-control",
-    locale: "default",
+    locale: getDatePickerLocale(),
 
     onReady: function(selectedDates, dateStr, instance) {
-      instance.altInput.placeholder = "Select a date";
+      instance.altInput.placeholder = translations[currentLanguage].datePlaceholder;
       instance.altInput.required = true;
       eventTime.required = false;
+    },
+
+    onOpen: function() {
+      syncDatePickerLanguage();
     },
 
     onChange: function(selectedDates, dateStr) {
@@ -1043,7 +1217,7 @@ textarea {
 
   function validateAttachments(files) {
       if (files.length > MAX_FILES) {
-          return "You can upload a maximum of 3 attachments.";
+          return t("maxAttachments");
       }
 
       const videos = files.filter(file =>
@@ -1051,16 +1225,16 @@ textarea {
       );
 
       if (videos.length > MAX_VIDEOS) {
-          return "You can upload a maximum of 1 video.";
+          return t("maxVideos");
       }
 
       for (const file of files) {
           if (file.type.startsWith("video/")) {
               if (file.size > MAX_VIDEO_SIZE) {
-                  return `${file.name}: Video must not exceed 20 MB.`;
+                  return `${file.name}: ${t("videoSizeError")}`;
               }
           } else if (file.size > MAX_FILE_SIZE) {
-              return `${file.name}: File must not exceed 10 MB.`;
+              return `${file.name}: ${t("fileSizeError")}`;
           }
       }
 
@@ -1084,20 +1258,35 @@ textarea {
       });
   }
 
+  function translateType(type) {
+    const typeKeys = {
+      "Near Miss": "nearMiss",
+      "Unsafe Act": "unsafeAct",
+      "Unsafe Condition": "unsafeCondition",
+      Hygiene: "hygiene",
+      Quality: "quality",
+      Other: "other",
+      "Positive Feedback": "positiveFeedback",
+      "Immediate Action": "immediateActionType"
+    };
+    return typeKeys[type] ? t(typeKeys[type]) : type;
+  }
+
 function showSuccessModal(payload, socNo) {
+    activeSubmission = { payload, socNo };
     submissionPreview.innerHTML = `
 
     <div class="receipt-card">
        
         <div class="receipt-row">
-            <div class="receipt-label">SOC No.</div>
+            <div class="receipt-label">${t("receiptSocNo")}</div>
             <div class="receipt-value">
                 ${socNo}
             </div>
         </div>
         
         <div class="receipt-row">
-            <div class="receipt-label">Event Time</div>
+            <div class="receipt-label">${t("receiptEventTime")}</div>
             <div class="receipt-value">
                 ${
                     (() => {
@@ -1116,35 +1305,35 @@ function showSuccessModal(payload, socNo) {
 
 
         <div class="receipt-row">
-            <div class="receipt-label">Reported By</div>
+            <div class="receipt-label">${t("receiptReportedBy")}</div>
             <div class="receipt-value">
                 ${payload.ReportedBy}
             </div>
         </div>
 
         <div class="receipt-row">
-          <div class="receipt-label">Type</div>
+          <div class="receipt-label">${t("receiptType")}</div>
           <div class="receipt-value">
-            ${payload.Type}
+            ${translateType(payload.Type)}
           </div>
         </div>
 
         <div class="receipt-row">
-          <div class="receipt-label">Project</div>
+          <div class="receipt-label">${t("receiptProject")}</div>
           <div class="receipt-value"> 
             ${payload.ProjectNo}
           </div>
         </div>
 
         <div class="receipt-row">
-          <div class="receipt-label">Work Location</div>
+          <div class="receipt-label">${t("receiptWorkLocation")}</div>
           <div class="receipt-value"> 
-            ${payload.workLocation}
+            ${payload.WorkLocation}
           </div>
         </div>
 
         <div class="receipt-row">
-          <div class="receipt-label">Location Details</div>
+          <div class="receipt-label">${t("receiptLocationDetails")}</div>
           <div class="receipt-value"> 
             ${payload.LocationDetails}
           </div>
@@ -1152,7 +1341,7 @@ function showSuccessModal(payload, socNo) {
 
         <div class="receipt-row">
             <div class="receipt-label">
-            Description
+            ${t("receiptDescription")}
             </div>
 
            <div id="descText" 
@@ -1167,14 +1356,14 @@ function showSuccessModal(payload, socNo) {
                 class="inline-show-btn"
                 onclick="toggleText('descText', this)">
 
-                Show Full
+                ${t("showFull")}
 
             </button>
         </div>
 
         <div class="receipt-row">
             <div class="receipt-label">
-            Immediate Action Taken
+            ${t("receiptImmediateAction")}
             </div>
 
            <div id="actionText" 
@@ -1189,7 +1378,7 @@ function showSuccessModal(payload, socNo) {
                 class="inline-show-btn"
                 onclick="toggleText('actionText', this)">
 
-                Show Full
+                ${t("showFull")}
 
             </button>
         </div>
@@ -1199,7 +1388,7 @@ function showSuccessModal(payload, socNo) {
     
         <!-- Attachments -->
         <div class="receipt-row">
-            <div class="receipt-label">Attachments</div>
+            <div class="receipt-label">${t("receiptAttachments")}</div>
             <div class="receipt-value">
                 ${
                     payload.Attachments && payload.Attachments.length > 0
@@ -1210,7 +1399,7 @@ function showSuccessModal(payload, socNo) {
                             </li>`
                         ).join("")}
                        </ul>`
-                    : "No attachments"
+                    : t("noReceiptAttachments")
                 }
             </div>
         </div>
@@ -1224,6 +1413,7 @@ function showSuccessModal(payload, socNo) {
 
       successModal.style.display =
           "none";
+      activeSubmission = null;
   }
 
   let allProjects = [];
@@ -1241,16 +1431,16 @@ function showSuccessModal(payload, socNo) {
 
   function resetPartyChiefSelection() {
     partyChiefSelect.innerHTML = `
-      <option value="">Select a party chief</option>
-      <option value="N/A">N/A</option>
+      <option value="">${t("selectPartyChief")}</option>
+      <option value="N/A">N/A 不適用</option>
     `;
   }
 
   function resetProjectSelection(message = "Confirm the event time to load matching projects.") {
     projectNo.innerHTML = `
-        <option value="">Select a project</option>
-        <option value="N/A">N/A</option>
-        <option value="Unknown">Unknown</option>
+        <option value="">${t("selectProject")}</option>
+        <option value="N/A" data-i18n="notApplicable">N/A 不適用</option>
+        <option value="Unknown" data-i18n="unknown">Unknown 未知</option>
     `;
     resetPartyChiefSelection();
   }
@@ -1286,13 +1476,13 @@ function showSuccessModal(payload, socNo) {
     if (!selectedProjectNo) return;
 
     if (selectedProjectNo === "N/A") {
-      partyChiefSelect.innerHTML = '<option value="N/A">N/A</option>';
+      partyChiefSelect.innerHTML = '<option value="N/A" data-i18n="notApplicable">N/A 不適用</option>';
       partyChiefSelect.value = "N/A";
       return;
     }
 
     if (selectedProjectNo === "Unknown") {
-      partyChiefSelect.innerHTML = '<option value="Unknown">Unknown</option>';
+      partyChiefSelect.innerHTML = '<option value="Unknown" data-i18n="unknown">Unknown 未知</option>';
       partyChiefSelect.value = "Unknown";
       return;
     }
@@ -1423,8 +1613,7 @@ async function loadProjects() {
         container.dataset.open =
             "false";
 
-        button.textContent =
-            "Show Full";
+        button.textContent = t("showFull");
 
     } else {
 
@@ -1436,8 +1625,7 @@ async function loadProjects() {
         container.dataset.open =
             "true";
 
-        button.textContent =
-            "Hide";
+        button.textContent = t("hide");
 
     }
   }
@@ -1465,9 +1653,9 @@ async function loadProjects() {
     });
 
     projectNo.innerHTML = `
-    <option value="">Select a project</option>
-    <option value="N/A">N/A</option>
-    <option value="Unknown">Unknown</option>`;
+    <option value="">${t("selectProject")}</option>
+    <option value="N/A" data-i18n="notApplicable">N/A 不適用</option>
+    <option value="Unknown" data-i18n="unknown">Unknown 未知</option>`;
     resetPartyChiefSelection();
 
     matches.forEach(project => {
@@ -1520,8 +1708,8 @@ async function loadProjects() {
   function renderAttachmentList() {
     attachmentList.innerHTML = "";
     fileName.textContent = selectedAttachments.length
-      ? `${selectedAttachments.length} of ${MAX_FILES} attachment(s) added`
-      : "No attachments added";
+      ? `${selectedAttachments.length} / ${MAX_FILES} ${t("attachmentCount")}`
+      : t("noAttachments");
 
     selectedAttachments.forEach((file, index) => {
       const item = document.createElement("div");
@@ -1552,8 +1740,8 @@ async function loadProjects() {
       const removeButton = document.createElement("button");
       removeButton.type = "button";
       removeButton.className = "attachment-remove";
-      removeButton.textContent = "Remove";
-      removeButton.setAttribute("aria-label", `Remove ${file.name}`);
+      removeButton.textContent = t("remove");
+      removeButton.setAttribute("aria-label", `${t("remove")} ${file.name}`);
       removeButton.addEventListener("click", () => {
         selectedAttachments.splice(index, 1);
         renderAttachmentList();
@@ -1581,14 +1769,14 @@ async function loadProjects() {
     
     if (duplicatedFile) {
         alert(
-            `File "${file.name}" has already been added.`
+            `File "${file.name}" ${t("duplicateAttachment")}`
         );
         return;
     }
 
 
     if (selectedAttachments.length >= MAX_FILES) {
-      status.textContent = "You can upload a maximum of 3 attachments.";
+      status.textContent = t("maxAttachments");
       return;
     }
 
@@ -1651,7 +1839,7 @@ async function loadProjects() {
         }))
       );
     } catch (error) {
-      status.textContent = "Unable to read the selected attachment(s). Please try again.";
+      status.textContent = t("readAttachmentError");
       console.error(error);
       return;
     }
